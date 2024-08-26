@@ -18,7 +18,7 @@ nested, arr and obj must be frozen, so that their elements or properties cannot 
 */
 
 const escapeStr = "`\\/\"'";
-const arr = [4, 2];
+const arr = [4, '2'];
 const obj = {
     str: "hello",
     num: 1,
