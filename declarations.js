@@ -35,6 +35,6 @@ const obj = {
 }
 
 Object.freeze(obj.nested.obj)
-Object.freeze(obj.arr)
-Object.freeze(obj.obj.nested)
+Object.freeze(obj.nested.arr)
+Object.freeze(obj.nested)
 Object.freeze(obj)
