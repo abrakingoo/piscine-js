@@ -24,42 +24,42 @@ const dogYears = (planetName, dogAge) => {
     switch (planetName.toLowerCase()) {
         case 'earth': {
             const dogyr = (dogAge / yr) * 7;
-            return dogyr.toFixed(2);
+            return parseFloat(dogyr.toFixed(2));
         }
         case 'mercury': {
             const mPeriod = 0.2408467;
             const dogyr = (dogAge / (mPeriod * yr)) * 7;
-            return dogyr.toFixed(2);
+            return parseFloat(dogyr.toFixed(2));
         }
         case 'venus': {
             const vPeriod = 0.61519726;
             const dogyr = (dogAge / (vPeriod * yr)) * 7;
-            return dogyr.toFixed(2);
+            return parseFloat(dogyr.toFixed(2));
         }
         case 'mars': {
             const marPeriod = 1.8808158; 
             const dogyr = (dogAge / (marPeriod * yr)) * 7;
-            return dogyr.toFixed(2);
+            return parseFloat(dogyr.toFixed(2));
         }
         case 'jupiter': {
             const juOrbPeriod = 11.862615;
             const dogyr = (dogAge / (juOrbPeriod * yr)) * 7;
-            return dogyr.toFixed(2);
+            return parseFloat(dogyr.toFixed(2));
         }
         case 'saturn': {
             const sartOrbPeriod = 29.447498;
             const dogyr = (dogAge / (sartOrbPeriod * yr)) * 7;
-            return dogyr.toFixed(2);
+            return parseFloat(dogyr.toFixed(2));
         }
         case 'uranus': {
             const urOrbPeriod = 84.016846;
             const dogyr = (dogAge / (urOrbPeriod * yr)) * 7;
-            return dogyr.toFixed(2);
+            return parseFloat(dogyr.toFixed(2));
         }
         case 'neptune': {
             const nepOrbPeriod = 164.79132;
             const dogyr = (dogAge / (nepOrbPeriod * yr)) * 7;
-            return dogyr.toFixed(2);
+            return parseFloat(dogyr.toFixed(2));
         }
         default:
             return "Invalid planet name";
