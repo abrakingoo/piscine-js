@@ -6,4 +6,4 @@ biggie with the greatest possible number value.
 */
 
 const smalls = Number.MIN_VALUE;
-const biggie = Number.MAX_VALUE;
+const biggie = 1.7976931348623157e308;
