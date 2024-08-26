@@ -20,21 +20,22 @@ nested, arr and obj must be frozen, so that their elements or properties cannot 
 const escapeStr = "`\\/\"'";
 const arr = [4, '2'];
 const obj = {
+
     str: "hello",
     num: 1,
     bool: true,
     undef: undefined,
-    nested: {
-        arr: [4, undefined, '2'],
-        obj: {
-            str: "world",
-            num: 2,
-            bool: true,
-        },
-    },
 }
 
-Object.freeze(obj.nested.obj)
-Object.freeze(obj.nested.arr)
-Object.freeze(obj.nested)
-Object.freeze(obj)
+const nested = {
+    arr: [4, undefined, '2'],
+    obj: {
+        str: "world",
+        num: 2,
+        bool: true,
+    },
+}
+Object.freeze(nested.obj);
+Object.freeze(nested.arr);
+Object.freeze(nested);
+Object.freeze(obj);
