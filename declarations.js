@@ -25,7 +25,7 @@ const obj = {
     bool: true,
     undef: undefined,
     nested: {
-        arr: [4, undefined, 2],
+        arr: [4, undefined, '2'],
         obj: {
             str: "world",
             num: 2,
