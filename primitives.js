@@ -5,7 +5,7 @@
 // undef for undefined
 */
 
-const str = String;
-const num = Number;
-const bool = Boolean;
+const str = "string";
+const num = 2;
+const bool = true;
 const undef = undefined;
