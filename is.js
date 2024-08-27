@@ -18,7 +18,7 @@ is.num = (n) => {
     if (Array.isArray(n)) {
         return n.every(Number.isInteger)
     }
-    return typeof n === 'number' && !Number.isNaN(n);
+    return typeof n === 'number' && Number.isFinite(n);
 }
 
 is.nan = (n) => Number.isNaN(n);
