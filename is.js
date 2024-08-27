@@ -14,7 +14,6 @@ is.truthy: value is truthy.
 is.falsy: value is falsy.
 */
 
-is = {};
 is.num = (n) => {
     if (Array.isArray(n)) {
         return n.every(Number.isInteger)
@@ -44,4 +43,4 @@ is.truthy = (n) => Boolean(n);
 
 is.falsy = (n) => !Boolean(n);
 
-console.log(is.num([1, "h"]))
+// console.log(is.num([1, "h"]))
