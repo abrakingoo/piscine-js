@@ -16,12 +16,10 @@ is.falsy: value is falsy.
 
 is.num = (n) => {
     if (typeof(n) === 'object') {
-        return n.every(Number.isInteger)
+        return false;
     }
     return typeof n === 'number' && Number.isFinite(n);
 }
-
-Object.freeze(is.num)
 
 is.nan = (n) => Number.isNaN(n);
 
