@@ -26,10 +26,6 @@ Create a function named getAcceleration that calculates the acceleration of a gi
 }
 If it is not possible to calculate it, it must return the string "impossible".
 
-//Formulas
-a = F/m
-a = Δv/Δt
-a = 2d/t^2
 
 a = acceleration
 m = mass
@@ -40,20 +36,36 @@ d = distance
 t = time
 */
 
-const object = {
-    f: 10,
-    m: 5,
-    Δv: 100,
-    Δt: 50,
-    t:1,
-    d: 10
-  }
+// const object = { d: 10, f: 2, Δv: 100 }
+
+// const object = { Δv: 100, Δt: 50 }
+//  {
+//     f: 10,
+//     m: 5,
+//     Δv: 100,
+//     Δt: 50,
+//     t:1,
+//     d: 10
+// }
+//Formulas
+// a = F/m
+// a = Δv/Δt
+// a = 2d/t^2
 
 const getAcceleration = (obj) => {
-    if (JSON.stringify(obj) === '{}' || obj.m === undefined || obj.f === undefined){
-        return "impossible"
+    if (obj.f !== undefined && obj.m !== undefined) {
+        return obj.f/obj.m;
     }
-    return obj.f/obj.m;
+
+    if (obj.Δv !== undefined && obj.Δt !== undefined) {
+        return obj.Δv/obj.Δt;
+    }
+
+    if (obj.d != undefined && obj.t != undefined) {
+        return 2*obj.d/ Math.pow(obj.t, 2);
+    }
+
+    return "impossible";
 }
 
-console.log(getAcceleration(object))
+// console.log(getAcceleration(object))
