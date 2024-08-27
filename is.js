@@ -14,12 +14,15 @@ is.truthy: value is truthy.
 is.falsy: value is falsy.
 */
 
+is = {};
 is.num = (n) => {
     if (Array.isArray(n)) {
         return n.every(Number.isInteger)
     }
     return typeof n === 'number' && Number.isFinite(n);
 }
+
+Object.freeze(is.num)
 
 is.nan = (n) => Number.isNaN(n);
 
@@ -40,3 +43,5 @@ is.fun = (f) => typeof(f) === 'function';
 is.truthy = (n) => Boolean(n);
 
 is.falsy = (n) => !Boolean(n);
+
+console.log(is.num([1, "h"]))
