@@ -14,12 +14,7 @@ is.truthy: value is truthy.
 is.falsy: value is falsy.
 */
 
-is.num = (n) => {
-    if (typeof(n) === 'object') {
-        return n;
-    }
-    return typeof n === 'number' && Number.isFinite(n);
-}
+is.num = (n) => typeof(n) === "number";
 
 is.nan = (n) => Number.isNaN(n);
 
