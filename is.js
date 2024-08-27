@@ -13,20 +13,19 @@ is.fun: value is a function.
 is.truthy: value is truthy.
 is.falsy: value is falsy.
 */
+const is = {};
 
 is.num = (n) => {
     if (Array.isArray(n)) {
         for (let i = 0; i < n.length; i++) {
-            if (Number.isNaN(n[i])) {
+            if (typeof n[i] !== 'number' || Number.isNaN(n[i])) {
                 return false;
+            }
         }
+        return true;
     }
-    return true;
-    }
-
     return typeof n === 'number' && !Number.isNaN(n);
 }
-
 
 is.nan = (n) => Number.isNaN(n);
 
@@ -48,4 +47,4 @@ is.truthy = (n) => Boolean(n);
 
 is.falsy = (n) => !Boolean(n);
 
-console.log(is.num([1, NaN]))
+console.log(is.num([1, 1]))
