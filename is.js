@@ -24,7 +24,7 @@ is.bool = (bool) => typeof(bool) === 'boolean';
 
 is.undef = (n) => typeof(n) === 'undefined';
 
-is.def = (n) => typeof(n) !== 'undefined' && Boolean(n);
+is.def = (n) => typeof(n) !== 'undefined';
 
 is.arr = (n) => Array.isArray(n);
 
