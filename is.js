@@ -14,14 +14,23 @@ is.truthy: value is truthy.
 is.falsy: value is falsy.
 */
 
+const is = {};
 is.num = (n) => {
-
     if (Array.isArray(n)) {
-        return n.filter(val => typeof val === 'number' && !Number.isNaN(val));
+        let temp = [];
+        for (let i = 0; i < n.length; i++) {
+            if (typeof n[i] !== 'number' || Number.isNaN(n[i])) {
+                temp.push(NaN);
+            } else {
+                temp.push(n[i]);
+            }
+        }
+        return temp;
     }
 
-    return typeof(n) === 'number' && !Number.isNaN(n);
+    return typeof n === 'number' && !Number.isNaN(n);
 }
+
 
 is.nan = (n) => Number.isNaN(n);
 
