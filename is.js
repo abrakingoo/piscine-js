@@ -14,12 +14,7 @@ is.truthy: value is truthy.
 is.falsy: value is falsy.
 */
 
-is.num = (n) => {
-    if (Array.isArray(n)) {
-        return n.every(Number.isInteger)
-    }
-    return typeof n === 'number' && Number.isFinite(n);
-}
+is.num = (n) => Number(n);
 
 Object.freeze(is.num)
 
