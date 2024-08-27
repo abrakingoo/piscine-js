@@ -14,7 +14,14 @@ is.truthy: value is truthy.
 is.falsy: value is falsy.
 */
 
-is.num = (n) => typeof(n) === 'number' && !Number.isNaN(n);
+is.num = (n) => {
+
+    if (Array.isArray(n)) {
+        return n.filter(val => typeof val === 'number' && !Number.isNaN(val));
+    }
+
+    return typeof(n) === 'number' && !Number.isNaN(n);
+}
 
 is.nan = (n) => Number.isNaN(n);
 
