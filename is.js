@@ -17,20 +17,10 @@ is.falsy: value is falsy.
 const is = {};
 is.num = (n) => {
     if (Array.isArray(n)) {
-        let temp = [];
-        for (let i = 0; i < n.length; i++) {
-            if (typeof n[i] !== 'number' || Number.isNaN(n[i])) {
-                temp.push(NaN);
-            } else {
-                temp.push(n[i]);
-            }
-        }
-        return temp;
+        return n.every(item => typeof item === 'number' && !Number.isNaN(item));
     }
-
     return typeof n === 'number' && !Number.isNaN(n);
 }
-
 
 is.nan = (n) => Number.isNaN(n);
 
