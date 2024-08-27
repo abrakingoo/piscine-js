@@ -14,57 +14,24 @@ is.truthy: value is truthy.
 is.falsy: value is falsy.
 */
 
-is.num = (n) => {
-    if (isNaN(Number(n))) {
-        return false;
-    }
+is.num = (n) => typeof(n) === 'number' && !Number.isNaN(n);
 
-    return true;
-}
+is.nan = (n) => Number.isNaN(n);
 
-is.nan = (n) => {
-    if (isNaN(Number(n))) {
-        return true;
-    }
+is.str = (str) => typeof(str) === 'string';
 
-    return false;
-}
+is.bool = (bool) => typeof(bool) === 'boolean';
 
-is.str = (str) => {
-    if (typeof(str) === 'string') {
-        return true;
-    }
+is.undef = (n) => typeof(n) === 'undefined';
 
-    return false;
-}
-
-is.bool = (bool) => {
-    if (typeof(bool) == 'boolean') {
-        return true;
-    }
-
-    return false;
-}
-
-is.undef = (n) => {
-    if (typeof(n) === 'undefined') {
-        return true;
-    }
-
-    return false;
-}
-
-is.def = (n) => {
-    if (typeof(n) !== 'undefined' && Boolean(n)) {
-        return true;
-    }
-
-    return false;
-}
+is.def = (n) => typeof(n) !== 'undefined' && Boolean(n);
 
 is.arr = (n) => Array.isArray(n);
-is.obj = (n) => typeof(n) === 'object';
+
+is.obj = (n) => typeof(n) === 'object' && n !== null && !Array.isArray(n);
+
 is.fun = (f) => typeof(f) === 'function';
+
 is.truthy = (n) => Boolean(n);
+
 is.falsy = (n) => !Boolean(n);
-console.log(is.falsy(''))
