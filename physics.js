@@ -50,7 +50,7 @@ const object = {
   }
 
 const getAcceleration = (obj) => {
-    if (JSON.stringify(obj) === '{}'){
+    if (JSON.stringify(obj) === '{}' || obj.m === undefined || obj.f === undefined){
         return "impossible"
     }
     return obj.f/obj.m;
