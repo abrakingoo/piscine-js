@@ -19,7 +19,7 @@ is.num = (n) => {
     if (Array.isArray(n)) {
         for (let i = 0; i < n.length; i++) {
             if (typeof n[i] !== 'number' || Number.isNaN(n[i])) {
-                return false;
+                return NaN;
             }
         }
         return true;
@@ -47,4 +47,4 @@ is.truthy = (n) => Boolean(n);
 
 is.falsy = (n) => !Boolean(n);
 
-console.log(is.num([1, 1]))
+console.log(is.num([1, NaN]))
