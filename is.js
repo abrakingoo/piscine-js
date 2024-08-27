@@ -16,7 +16,7 @@ is.falsy: value is falsy.
 
 is.num = (n) => {
     if (typeof(n) === 'object') {
-        return NaN;
+        return n;
     }
     return typeof n === 'number' && Number.isFinite(n);
 }
