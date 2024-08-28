@@ -6,8 +6,9 @@ divide that acts like the integer division operator /, without using it.
 modulo that acts like the % operator, without using it.
 */
 
+let neg = false
+
 const multiply = (a, b) => {
-    let neg = false
     let mul = 0;
     if (b < 0) {
         b = Math.abs(b)
@@ -27,7 +28,6 @@ const multiply = (a, b) => {
 }
 
 const divide = (a, b) => {
-    let neg = false;
     if (a < 0 && b < 0) {
         a = Math.abs(a);
         b = Math.abs(b)
@@ -72,6 +72,7 @@ const modulo = (a, b) => {
 
     if (a < 0) {
         a = Math.abs(a)
+        neg = true;
     }
 
     if (b < 0) {
@@ -86,6 +87,9 @@ const modulo = (a, b) => {
     while(a > 0) {
         a -= b;    
         if (a != 0 && b > a) {
+            if (neg) {
+                return -a
+            }
             return a;
         }
     }
@@ -93,4 +97,4 @@ const modulo = (a, b) => {
     return 0;
 }
 
-console.log(modulo(123, -22))
+console.log(modulo(123, 22))
