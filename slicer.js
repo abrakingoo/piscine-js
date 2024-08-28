@@ -10,6 +10,11 @@ optional ending index.
 
 const slice = (arr, sIndex, ...eIndex) => {
     let newSlice = [];
+    let string = false;
+
+    if (typeof(arr) == 'string') {
+        string = true;
+    }
 
     if (sIndex === undefined) {
         return arr
@@ -34,8 +39,9 @@ const slice = (arr, sIndex, ...eIndex) => {
     for (let i = sIndex; i < stop; i++) {
         newSlice.push(arr[i]);
     }
-    return newSlice;
+    return string ? newSlice.join("") : newSlice;
 }
 
 // const animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
-// console.log(slice(animals))
+// const str = 'abcdef';
+// console.log(slice(animals, 2))
