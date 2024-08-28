@@ -38,8 +38,10 @@ const divide = (a, b) => {
 
     let count = 0;
     while(a > 0) {
+        if (a != 0 && a > b){
+            count++
+        }
         a -= b;
-        count++
     }
 
     return count;
@@ -57,7 +59,7 @@ const modulo = (a, b) => {
   
     while(a > 0) {
         a -= b;    
-        if (a != 0) {
+        if (a != 0 && b > a) {
             return a;
         }
     }
@@ -65,4 +67,4 @@ const modulo = (a, b) => {
     return 0;
 }
 
-console.log(divide(34, 78))
+console.log(divide(8, 5))
