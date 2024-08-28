@@ -21,6 +21,13 @@ const slice = (arr, sIndex, ...eIndex) => {
     }
     let stop = eIndex.length > 0 ? eIndex[0] : arr.length;
 
+    if (sIndex < 0 && stop < 0) {
+        for (let i = arr.length + sIndex; i < arr.length + stop; i++) {
+            newSlice.push(arr[i]);
+        }
+        return string ? newSlice.join("") : newSlice;
+    }
+
     if (sIndex < 0) {
         for (let i = arr.length + sIndex; i < arr.length; i++) {
             newSlice.push(arr[i]);
@@ -42,6 +49,6 @@ const slice = (arr, sIndex, ...eIndex) => {
     return string ? newSlice.join("") : newSlice;
 }
 
-// const animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
-// const str = 'abcdef';
-// console.log(slice(str,1, -2))
+const animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
+const str = 'abcdef';
+console.log(slice(str,-3, -1))
