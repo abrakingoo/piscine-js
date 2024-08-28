@@ -19,3 +19,28 @@ const indexOf = (arr, val, ...optional) => {
 
     return -1;
 }
+const lastIndexOf = (arr, val, ...optional) => {
+
+    let index = optional.length > 0 && optional[0] < arr.length ? optional[0] : arr.length -1;
+
+    for (index; index >= 0; index--) {
+        if (val === arr[index]) {
+            return index;
+        }
+    }
+
+    return -1;
+}
+
+
+const includes = (arr,  val) => {
+    for (elem of arr) {
+        if (elem === val) {
+            return true;
+        }
+    }
+    return false;
+}
+
+
+
