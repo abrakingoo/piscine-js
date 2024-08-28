@@ -13,12 +13,8 @@ const repeat = (str, n) => {
     let st = ""
     for (let i = 0; i < Math.floor(n); i++) {
         st += str;
-
-        if (i < n -1) {
-            st += " ";
-        }
     }
     return st
 }
 
-console.log(repeat("hello", 3))
+// console.log(repeat("hello", 3))
