@@ -5,38 +5,24 @@ multiply that acts like the * operator, without using it.
 divide that acts like the integer division operator /, without using it.
 modulo that acts like the % operator, without using it.
 */
-// Math.imul = undefined;
+
 let neg = false;
 
 const multiply = (a, b) => {
-    let mul = 0;
+    let result = 0;
+    let isNegative = (a < 0) ^ (b < 0); // XOR to determine if the result should be negative
 
-    // if (a < 0 && b < 0) {
-    //     a = Math.abs(a);
-    //     b = Math.abs(b);
-    // }
+    a = Math.abs(a);
+    b = Math.abs(b);
 
-    if (b < 0) {
-        b = Math.abs(b)
-        neg = true;
+    while (b > 0) {
+        result += a;
+        b--;
     }
 
-    if (a < 0) {
-        a = Math.abs(a)
-        neg = true;
-    }
+    return isNegative ? -result : result;
+};
 
-    while(b > 0) {
-        mul+=a;
-        b--
-    }
-
-    if (neg) {
-        return -mul
-    }
-
-    return mul;
-}
 
 const divide = (a, b) => {
     if (a < 0 && b < 0) {
