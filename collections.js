@@ -123,8 +123,14 @@ const strToObj = (str) => {
 }
 
 const superTypeOf = (n) => {
+    if (n === null) {
+        return "null";
+    }
+    if (n == undefined) {
+        return "undefined";
+    }
     const obj = Object.prototype.toString.call(n)
-    return obj.slice(8, -1)
+    return obj.slice(8, -1);
 }
 
-// console.log(strToArr(str))
+// console.log(superTypeOf(undefined))
