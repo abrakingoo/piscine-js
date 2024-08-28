@@ -28,6 +28,11 @@ const multiply = (a, b) => {
 
 const divide = (a, b) => {
     let neg = false;
+    if (a < 0 && b < 0) {
+        a = Math.abs(a);
+        b = Math.abs(b)
+    }
+
     if (b < 0) {
         b = Math.abs(b)
         neg = true;
@@ -37,6 +42,7 @@ const divide = (a, b) => {
         a = Math.abs(a)
         neg = true;
     }
+
 
     if (b > a) {
         return 0;
@@ -78,4 +84,4 @@ const modulo = (a, b) => {
     return 0;
 }
 
-console.log(divide(-123, 22))
+console.log(divide(123, -22))
