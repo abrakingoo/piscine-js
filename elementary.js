@@ -71,8 +71,9 @@ const modulo = (a, b) => {
     }
 
     if (b > a) {
-        return b;
+        return a;
     }
+
   
     while(a > 0) {
         a -= b;    
@@ -84,4 +85,4 @@ const modulo = (a, b) => {
     return 0;
 }
 
-console.log(divide(123, -22))
+console.log(modulo(34, 78))
