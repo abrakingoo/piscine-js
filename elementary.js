@@ -13,7 +13,7 @@ const multiply = (a, b) => {
 
     if (a < 0 && b < 0) {
         a = Math.abs(a);
-        b = Math.abs(b)
+        b = Math.abs(b);
     }
 
     if (b < 0) {
@@ -113,4 +113,4 @@ const modulo = (a, b) => {
     return 0;
 }
 
-console.log(multiply(22, 123))
+// console.log(multiply(-22, -123))
