@@ -67,6 +67,14 @@ const divide = (a, b) => {
 const modulo = (a, b) => {
 
     if (b < 0) {
+        b = Math.abs(b)
+    }
+
+    if (a < 0) {
+        a = Math.abs(a)
+    }
+
+    if (b < 0) {
         return;
     }
 
@@ -85,4 +93,4 @@ const modulo = (a, b) => {
     return 0;
 }
 
-console.log(modulo(34, 78))
+console.log(modulo(123, -22))
