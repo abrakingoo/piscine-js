@@ -32,6 +32,10 @@ const divide = (a, b) => {
         return;
     }
 
+    if (b > a) {
+        return 0;
+    }
+
     let count = 0;
     while(a > 0) {
         a -= b;
@@ -61,4 +65,4 @@ const modulo = (a, b) => {
     return 0;
 }
 
-// console.log(multiply(123, 22))
+console.log(divide(34, 78))
