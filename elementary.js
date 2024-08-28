@@ -40,7 +40,12 @@ const divide = (a, b) => {
 }
 
 const modulo = (a, b) => {
-    let isNegative = (a < 0) ^ (b < 0);
+
+    if (b === 0) {
+        return
+    }
+    
+    let isNegative = (a < 0);
 
     a = Math.abs(a);
     b = Math.abs(b);
@@ -52,4 +57,4 @@ const modulo = (a, b) => {
     return isNegative ? -a : a;
 }
 
-console.log(modulo(-123, 22))
+console.log(modulo(123, -22))
