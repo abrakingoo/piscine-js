@@ -25,78 +25,31 @@ const multiply = (a, b) => {
 
 
 const divide = (a, b) => {
-    if (a < 0 && b < 0) {
-        a = Math.abs(a);
-        b = Math.abs(b)
-    }
-
-    if (b < 0) {
-        b = Math.abs(b)
-        neg = true;
-    }
-
-    if (a < 0) {
-        a = Math.abs(a)
-        neg = true;
-    }
-
-
-    if (b > a) {
-        return 0;
-    }
-
-
     let count = 0;
-    while(a > 0) {
-        if (a != 0 && a > b){
-            count++
-        }
-        a -= b;
+    let isNegative = (a < 0) ^ (b < 0);
+
+    a = Math.abs(a);
+    b = Math.abs(b);
+
+    while(a >= b) {
+        a -= b
+        count++
     }
 
-    if (neg) {
-        return -count
-    }
-
-    return count;
+    return isNegative ? -count : count;
 }
 
 const modulo = (a, b) => {
+    let isNegative = (a < 0) ^ (b < 0);
 
-    if (a < 0 && b < 0) {
-        a = Math.abs(a);
-        b = Math.abs(b)
+    a = Math.abs(a);
+    b = Math.abs(b);
+
+    while(a >= b) {
+        a -= b;
     }
 
-    if (b < 0) {
-        b = Math.abs(b)
-    }
-
-    if (a < 0) {
-        a = Math.abs(a)
-        neg = true;
-    }
-
-    if (b < 0) {
-        return;
-    }
-
-    if (b > a) {
-        return a;
-    }
-
-  
-    while(a > 0) {
-        a -= b;    
-        if (a != 0 && b > a) {
-            if (neg) {
-                return -a
-            }
-            return a;
-        }
-    }
-
-    return 0;
+    return isNegative ? -a : a;
 }
 
-console.log(multiply(34, 78))
+console.log(modulo(-123, 22))
