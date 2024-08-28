@@ -34,7 +34,7 @@ const lastIndexOf = (arr, val, ...optional) => {
 
 
 const includes = (arr,  val) => {
-    for (elem of arr) {
+    for (let elem of arr) {
         if (elem === val) {
             return true;
         }
@@ -44,3 +44,4 @@ const includes = (arr,  val) => {
 
 
 
+console.log(includes([1, 2, 3, 4, 5, 4, 3, 2, 1], 2))
