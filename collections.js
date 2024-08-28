@@ -56,9 +56,20 @@ superTypeOf(superTypeOf) // -> 'Function'
 // const obj = { x: 45, y: 75, radius: 24 };
 // const arr = [1, 2, 1, 3]
 // const str = 'hello'
+// const map = new Map();
+// const set = new Set();
+
+// set.add(1)
+// set.add(2)
+// set.add(1)
+// set.add(3)
+// map.set('a', 1)
+// map.set('b', 2)
+// map.set(3, 'c')
+// map.set(4, 'd')
 
 const arrToSet = (arr) => new Set(arr);
-const arrToStr = (arr) => arr.join(" ");
+const arrToStr = (arr) => arr.join("");
 const setToArr = (set) => [...set];
 const setToStr = (set) => setToArr(set).join("");
 const strToArr = (str) => str.split('');
@@ -110,4 +121,10 @@ const strToObj = (str) => {
 
     return obj;
 }
-// console.log(strToObj(str))
+
+const superTypeOf = (n) => {
+    const obj = Object.prototype.toString.call(n)
+    return obj.slice(8, -1)
+}
+
+// console.log(strToArr(str))
