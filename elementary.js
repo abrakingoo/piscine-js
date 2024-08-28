@@ -11,10 +11,10 @@ let neg = false
 const multiply = (a, b) => {
     let mul = 0;
 
-    // if (a < 0 && b < 0) {
-    //     a = Math.abs(a);
-    //     b = Math.abs(b);
-    // }
+    if (a < 0 && b < 0) {
+        a = Math.abs(a);
+        b = Math.abs(b);
+    }
 
     if (b < 0) {
         b = Math.abs(b)
