@@ -15,6 +15,11 @@ const multiply = (a, b) => {
         neg = true;
     }
 
+    if (a < 0) {
+        a = Math.abs(a)
+        neg = true;
+    }
+
     while(b > 0) {
         mul+=a;
         b--
@@ -97,4 +102,4 @@ const modulo = (a, b) => {
     return 0;
 }
 
-console.log(modulo(123, 22))
+console.log(multiply(22, 123))
