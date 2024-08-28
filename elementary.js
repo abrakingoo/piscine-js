@@ -113,4 +113,4 @@ const modulo = (a, b) => {
     return 0;
 }
 
-console.log(multiply(-22, -123))
+console.log(multiply(34, 78))
