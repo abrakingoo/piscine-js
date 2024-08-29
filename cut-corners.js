@@ -77,29 +77,40 @@ const floor = (x) => {
     return val;
 };
 
+const trunc = (n) => {
 
-const trunc = (n)=>{
-    let ost
-    let res
-    ost = n % 1
-    if (n > 0 && ost != 0) {
-        return res = n - ost
-    } else {
-        let x
-        x = 1 + ost
-        return res = n - ost
+  const threshold = 0xfffffffff;
+
+  if (n >= threshold || n <= -threshold) {
+    // n -= threshold; // Reduce the number by the threshold only for large numbers
+    return n;
+  }
+
+  let res = n;
+
+  if (n > 0) {
+    while (res > 1) {
+      res -= 1;
     }
-    return n
-}
+    return n - res;
+  } else if (n < 0) {
+    while (res < -1) {
+      res += 1;
+    }
+    return n - res;
+  }
+
+  return n;
+};
 
 // Test cases
-// const nums = [3.7, -3.7, 3.1, -3.1];
+const nums = [3.7, -3.7, 3.1, -3.1];
 // console.log(nums.map(round)); // [4, -4, 3, -3]
 // console.log(nums.map(floor)); // [3, -4, 3, -4]
 // console.log(nums.map(trunc)); // [3, -3, 3, -3]
 // console.log(nums.map(ceil));  // [4, -3, 4, -3]
 
-// console.log(trunc(0xfffffffff)); // 68719476735
+// console.log(trunc(0xfffffffff + 50)); // 68719476735
 // console.log(getNumber(-5.56))
 // console.log(trunc(-4.18))
 // console.log(ceil(-1.5))
