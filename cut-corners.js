@@ -79,7 +79,7 @@ const floor = (x) => {
 
 
 const trunc = (x) => {
-    // if ( x >= 68719476735 ) return x;
+    if ( x >= 0xfffffffff ) return x;
     if (x === Infinity || x === -Infinity) return x;
     let val = getNumber(x);
     console.log(val)
@@ -94,7 +94,7 @@ const trunc = (x) => {
 // console.log(nums.map(trunc)); // [3, -3, 3, -3]
 // console.log(nums.map(ceil));  // [4, -3, 4, -3]
 
-// console.log(trunc(0xfffffffff)); // 68719476735
+console.log(trunc(0xfffffffff)); // 68719476735
 // console.log(getNumber(-5.56))
 // console.log(trunc(-4.18))
 // console.log(ceil(-1.5))
