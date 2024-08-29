@@ -8,23 +8,20 @@ trunc: which behaves similar to Math.trunc().
 */
 
 const modulo = (a, b) => {
-    if (a > Number.MAX_VALUE || b > Number.MAX_VALUE) return Infinity;
+    if (a === Infinity || b === Infinity || b === 0) return NaN;
 
-    if (b === 0) {
-        return
-    }
-    
-    let isNegative = (a < 0);
+    let isNegative = a < 0;
 
     a = Math.abs(a);
     b = Math.abs(b);
 
-    while(a >= b) {
+    while (a >= b) {
         a -= b;
     }
 
     return isNegative ? -a : a;
-}
+};
+
 
 const round = (x) => {
     let neg = false;
