@@ -69,8 +69,13 @@ const floor = (x) => {
 
     let val = getNumber(x);
 
-    return neg ? -(val+1) : val;
-}
+    if (neg) {
+        return -(val + (x > val ? 1 : 0));
+    }
+
+    return val;
+};
+
 
 const trunc = (x) => {
     if ( x >= 68719476735 ) return x;
@@ -84,8 +89,8 @@ const trunc = (x) => {
 // const nums = [3.7, -3.7, 3.1, -3.1];
 // console.log(nums.map(round)); // [4, -4, 3, -3]
 // console.log(nums.map(floor)); // [3, -4, 3, -4]
-// console.log(nums.map(ceil));  // [4, -3, 4, -3]
 // console.log(nums.map(trunc)); // [3, -3, 3, -3]
+// console.log(nums.map(ceil));  // [4, -3, 4, -3]
 
 // console.log(trunc(0xfffffffff)); // 68719476735
 // console.log(getNumber(-5.56))
