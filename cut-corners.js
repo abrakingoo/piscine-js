@@ -78,14 +78,19 @@ const floor = (x) => {
 };
 
 
-const trunc = (x) => {
-    if ( x >= 0xfffffffff ) return x;
-    if (x === Infinity || x === -Infinity) return x;
-    let val = getNumber(x);
-    console.log(val)
-    let neg = x < 0;
-    return neg ? -val : val;
-};
+const trunc = (n)=>{
+    let ost
+    let res
+    ost = n % 1
+    if (n > 0 && ost != 0) {
+        return res = n - ost
+    } else {
+        let x
+        x = 1 + ost
+        return res = n - ost
+    }
+    return n
+}
 
 // Test cases
 // const nums = [3.7, -3.7, 3.1, -3.1];
@@ -94,7 +99,7 @@ const trunc = (x) => {
 // console.log(nums.map(trunc)); // [3, -3, 3, -3]
 // console.log(nums.map(ceil));  // [4, -3, 4, -3]
 
-console.log(trunc(0xfffffffff)); // 68719476735
+// console.log(trunc(0xfffffffff)); // 68719476735
 // console.log(getNumber(-5.56))
 // console.log(trunc(-4.18))
 // console.log(ceil(-1.5))
