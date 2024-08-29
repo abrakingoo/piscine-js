@@ -24,92 +24,63 @@ const modulo = (a, b) => {
     return isNegative ? -a : a;
 };
 
-
-
 const round = (x) => {
-    let neg = false;
-
-    if (x === Infinity || x === -Infinity) return x;
-
-    if (x < 0) {
-        x = Math.abs(x);
-        neg = true;
-    }
-    
-    if (modulo(x, 1) >= 0.5 ) {
-        let val = x - (modulo(x, 1)) + 1
-        return neg ? -val : val;
-    }
-
-    return neg ? -(x - modulo(x, 1)) : x - modulo(x, 1);
-}
-
-const ceil = (x) => {
-    let neg = false;
-
-    if (x === 0) return 0;
-
-    if (x === Infinity || x === -Infinity) return x;
-
-    if (x < 0) {
-        x = Math.abs(x);
-        neg = true;
-    }
-
-    if (x < 0 && neg) return -0;
-
-    if (modulo(x, 1) >= 0.5 ) {
-        let val = x - (modulo(x, 1)) + 1
-        return neg ? -val+1 : val;
-    }
-
-    return neg ? -(x - modulo(x, 1)) : (x - modulo(x, 1)+1);
-
-}
-
-const floor = (x) => {
-    let neg = false;
-
-    if (x === 0) return 0;
-
-    if (x === Infinity || x === -Infinity) return x;
-
-    if (x < 0) {
-        x = Math.abs(x);
-        neg = true;
-    }
-
-    if (x < 0 && neg) return -0;
-
-    let val = x - (modulo(x, 1))
-
-    return neg ? -(val+1) : val;
-
-}
-
-const trunc = (x) => {
-    if (x === `0xfffffffffctx`) return `0xfffffffff + ~~ctx`
     if (x === Infinity || x === -Infinity) return x;
 
     let neg = x < 0;
 
     if (neg) {
-        x = Math.abs(x);
+        x = -x;
     }
     
-    let fractionalPart = modulo(x, 1);
-    let truncatedValue = x - fractionalPart;
+    let fractionalPart = x - Math.floor(x);
 
-    return neg ? -truncatedValue : truncatedValue;
+    if (fractionalPart >= 0.5) {
+        x = Math.ceil(x);
+    } else {
+        x = Math.floor(x);
+    }
+
+    return neg ? -x : x;
 };
 
+const ceil = (x) => {
+    if (x === Infinity || x === -Infinity) return x;
 
+    let neg = x < 0;
 
+    if (neg) {
+        x = -x;
+        return -Math.floor(x);
+    }
 
-// const nums = [3.7, -3.7, 3.1, -3.1]
-// console.log(nums.map(round))
-// console.log(nums.map(floor))
-console.log(trunc("0xfffffffff" + "ctx"))
-// console.log(nums.map(ceil))
+    return Math.ceil(x);
+};
 
-// console.log(modulo(Number.POSITIVE_INFINITY, 1))
+const floor = (x) => {
+    if (x === Infinity || x === -Infinity) return x;
+
+    let neg = x < 0;
+
+    if (neg) {
+        x = -x;
+        return -Math.ceil(x);
+    }
+
+    return Math.floor(x);
+};
+
+const trunc = (x) => {
+    if (x === Infinity || x === -Infinity) return x;
+
+    return x > 0 ? Math.floor(x) : Math.ceil(x);
+};
+
+// Test cases
+// const nums = [3.7, -3.7, 3.1, -3.1];
+// console.log(nums.map(round)); // [4, -4, 3, -3]
+// console.log(nums.map(floor)); // [3, -4, 3, -4]
+// console.log(nums.map(ceil));  // [4, -3, 4, -3]
+// console.log(nums.map(trunc)); // [3, -3, 3, -3]
+
+// console.log(trunc(0xfffffffff + tcx)); // 68719476735
