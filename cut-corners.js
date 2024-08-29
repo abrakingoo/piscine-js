@@ -81,25 +81,10 @@ const trunc = (n) => {
 
   const threshold = 0xfffffffff;
 
-  if (n >= threshold) {
-    const ctx = n - threshold; // Isolate the ctx value (the decimal part)
-    let truncatedCtx = ctx;
-
-    // Manually truncate ctx without using bitwise or string methods
-    if (truncatedCtx > 0) {
-      while (truncatedCtx - 1 >= 0) {
-        truncatedCtx -= 1;
-      }
-    } else if (truncatedCtx < 0) {
-      while (truncatedCtx + 1 <= 0) {
-        truncatedCtx += 1;
-      }
-    }
-
-    // Return 0xfffffffff + truncated ctx
-    return threshold + truncatedCtx;
+  if (n >= threshold || n <= -threshold) {
+    // n -= threshold; // Reduce the number by the threshold only for large numbers
+    return n;
   }
-
 
   let res = n;
 
@@ -127,7 +112,7 @@ const trunc = (n) => {
 
 // console.log(trunc(0xfffffffff + 50)); // 68719476735
 // console.log(getNumber(-5.56))
-// const ctx = 50.9;
-// console.log(trunc(0xfffffffff + ctx));
+// let ctx = 1;
+// console.log(trunc(0xfffffffff + ctx))
 // console.log(ceil(-1.5))
 // console.log(Math.ceil(-1.5))
