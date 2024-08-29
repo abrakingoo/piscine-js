@@ -8,31 +8,20 @@ trunc: which behaves similar to Math.trunc().
 */
 
 const getNumber = (num) => {
-    let multiplier = 1;
+    let result = 0;
+    let isNegative = num < 0;
 
-    while (!Number.isInteger(num * multiplier)) {
-        multiplier *= 10;
+    // Handle the absolute value of the number
+    num = Math.abs(num);
+    
+    while (num >= 1) {
+        num -= 1;
+        result += 1;
     }
-
-    return multiplier * num;
+    
+    // Apply the sign back
+    return result;
 }
-
-const modulo = (a, b) => {
-    if (a === Infinity || b === Infinity || b === 0) return NaN;
-
-    let isNegative = a < 0;
-
-    a = Math.abs(a);
-    b = Math.abs(b);
-
-    if (b > a) return isNegative ? -a : a; // Early return if divisor is greater
-
-    while (a >= b) {
-        a -= b;
-    }
-
-    return isNegative ? -a : a;
-};
 
 const round = (x) => {
     let neg = false;
@@ -43,15 +32,15 @@ const round = (x) => {
         x = -x;
         neg = true;
     }
-    
-    let fractionalPart = modulo(x, 1);
+
+    let num = getNumber(x);
+    let fractionalPart = x - num;
     if (fractionalPart >= 0.5) {
-        let val = x - fractionalPart + 1;
-        return neg ? -val : val;
+        num += 1;
+        return neg ? -num : num;
     }
 
-    let val = x - fractionalPart;
-    return neg ? -val : val;
+    return neg ? -num : num;
 }
 
 const ceil = (x) => {
@@ -64,13 +53,8 @@ const ceil = (x) => {
         neg = true;
     }
 
-    let fractionalPart = modulo(x, 1);
-    if (fractionalPart > 0) {
-        let val = x - fractionalPart + 1;
-        return neg ? -val : val;
-    }
-
-    return neg ? -x : x;
+    let num = getNumber(x);
+    return neg ? -num : num+1;
 }
 
 const floor = (x) => {
@@ -83,10 +67,9 @@ const floor = (x) => {
         neg = true;
     }
 
-    let fractionalPart = modulo(x, 1);
-    let val = x - fractionalPart;
+    let val = getNumber(x);
 
-    return neg ? -val : val;
+    return neg ? -(val+1) : val;
 }
 
 const trunc = (x) => {
@@ -98,9 +81,10 @@ const trunc = (x) => {
 // Test cases
 // const nums = [3.7, -3.7, 3.1, -3.1];
 // console.log(nums.map(round)); // [4, -4, 3, -3]
-// console.log( [3, -4, 2, -3, 0].map(floor)); // [3, -4, 3, -4]
+// console.log(nums.map(floor)); // [3, -4, 3, -4]
 // console.log(nums.map(ceil));  // [4, -3, 4, -3]
 // console.log(nums.map(trunc)); // [3, -3, 3, -3]
 
 // console.log(trunc(0xfffffffff)); // 68719476735
-console.log(getNumber(-5.56))
+// console.log(getNumber(-5.56))
+// console.log(trunc(-4.18))
