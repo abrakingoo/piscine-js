@@ -15,19 +15,15 @@ const modulo = (a, b) => {
     a = Math.abs(a);
     b = Math.abs(b);
 
-    let iterations = 0;  // Safeguard counter
-    const maxIterations = 1000000;  // Set a reasonable iteration limit
+    if (b > a) return isNegative ? -a : a; // Early return if divisor is greater
 
     while (a >= b) {
         a -= b;
-        iterations++;
-        if (iterations > maxIterations) {
-            return NaN
-        }
     }
 
     return isNegative ? -a : a;
 };
+
 
 
 const round = (x) => {
@@ -92,25 +88,28 @@ const floor = (x) => {
 }
 
 const trunc = (x) => {
-    let neg = false;
-
+    if (typeof(x) !== 'number') return x;
     if (x === Infinity || x === -Infinity) return x;
 
-    if (x < 0) {
+    let neg = x < 0;
+
+    if (neg) {
         x = Math.abs(x);
-        neg = true;
     }
     
-    let val = x - (modulo(x, 1)) + 1
+    let fractionalPart = modulo(x, 1);
+    let truncatedValue = x - fractionalPart;
 
-    return neg ? -(x - modulo(x, 1)) : x - modulo(x, 1);
-}
+    return neg ? -truncatedValue : truncatedValue;
+};
+
+
 
 
 // const nums = [3.7, -3.7, 3.1, -3.1]
 // console.log(nums.map(round))
 // console.log(nums.map(floor))
-// console.log(nums.map(trunc))
+// console.log(trunc("0xfffffffff" + ctx))
 // console.log(nums.map(ceil))
 
 // console.log(modulo(Number.POSITIVE_INFINITY, 1))
