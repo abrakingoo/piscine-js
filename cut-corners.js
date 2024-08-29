@@ -68,8 +68,46 @@ const ceil = (x) => {
 
 }
 
-// const nums = [3.7, -3.7, 3.1, -3.1]
-// // console.log(nums.map(round))
+const floor = (x) => {
+    let neg = false;
 
+    if (x === 0) return 0;
+
+    if (x === Number.POSITIVE_INFINITY) return Infinity;
+    if (x === Number.NEGATIVE_INFINITY) return -Infinity;
+
+    if (x < 0) {
+        x = Math.abs(x);
+        neg = true;
+    }
+
+    if (x < 0 && neg) return -0;
+
+    let val = x - (modulo(x, 1))
+
+    return neg ? -(val+1) : val;
+
+}
+
+const trunc = (x) => {
+    let neg = false;
+
+    if (x === Number.POSITIVE_INFINITY) return Infinity;
+    if (x === Number.NEGATIVE_INFINITY) return -Infinity;
+
+    if (x < 0) {
+        x = Math.abs(x);
+        neg = true;
+    }
+    
+    let val = x - (modulo(x, 1)) + 1
+
+    return neg ? -(x - modulo(x, 1)) : x - modulo(x, 1);
+}
+
+
+// const nums = [3.7, -3.7, 3.1, -3.1]
+// console.log(nums.map(round))
+// console.log(nums.map(floor))
+// console.log(nums.map(trunc))
 // console.log(nums.map(ceil))
-// console.log(Math.ceil(3.7))
