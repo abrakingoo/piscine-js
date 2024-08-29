@@ -7,6 +7,16 @@ floor: which behaves similar to Math.floor().
 trunc: which behaves similar to Math.trunc().
 */
 
+const getNumber = (num) => {
+    let multiplier = 1;
+
+    while (!Number.isInteger(num * multiplier)) {
+        multiplier *= 10;
+    }
+
+    return multiplier * num;
+}
+
 const modulo = (a, b) => {
     if (a === Infinity || b === Infinity || b === 0) return NaN;
 
@@ -88,8 +98,9 @@ const trunc = (x) => {
 // Test cases
 // const nums = [3.7, -3.7, 3.1, -3.1];
 // console.log(nums.map(round)); // [4, -4, 3, -3]
-// console.log(nums.map(floor)); // [3, -4, 3, -4]
+// console.log( [3, -4, 2, -3, 0].map(floor)); // [3, -4, 3, -4]
 // console.log(nums.map(ceil));  // [4, -3, 4, -3]
 // console.log(nums.map(trunc)); // [3, -3, 3, -3]
 
 // console.log(trunc(0xfffffffff)); // 68719476735
+console.log(getNumber(-5.56))
