@@ -15,8 +15,15 @@ const modulo = (a, b) => {
     a = Math.abs(a);
     b = Math.abs(b);
 
+    let iterations = 0;  // Safeguard counter
+    const maxIterations = 1000000;  // Set a reasonable iteration limit
+
     while (a >= b) {
         a -= b;
+        iterations++;
+        if (iterations > maxIterations) {
+            return NaN
+        }
     }
 
     return isNegative ? -a : a;
