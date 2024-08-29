@@ -75,7 +75,9 @@ const floor = (x) => {
 const trunc = (x) => {
     if ( x >= 68719476735 ) return x;
     if (x === Infinity || x === -Infinity) return x;
-    return x > 0 ? floor(x) : ceil(x);
+    let val = getNumber(x);
+    let neg = x < 0;
+    return neg ? -val : val;
 };
 
 // Test cases
