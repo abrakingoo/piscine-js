@@ -19,7 +19,6 @@ const getNumber = (num) => {
         result += 1;
     }
     
-    // Apply the sign back
     return result;
 }
 
@@ -80,12 +79,20 @@ const floor = (x) => {
 
 
 const trunc = (x) => {
-    if ( x >= 68719476735 ) return x;
+    // Handle special cases
     if (x === Infinity || x === -Infinity) return x;
+
+    // Convert to integer based on sign
+    let isNegative = x < 0;
+    x = Math.abs(x);
+
+    // Use the getNumber function to handle truncation
     let val = getNumber(x);
-    let neg = x < 0;
-    return neg ? -val : val;
+
+    // Apply sign back and handle cases where x is extremely large
+    return isNegative ? -val : val;
 };
+
 
 // Test cases
 // const nums = [3.7, -3.7, 3.1, -3.1];
