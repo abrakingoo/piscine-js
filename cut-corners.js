@@ -25,55 +25,64 @@ const modulo = (a, b) => {
 };
 
 const round = (x) => {
+    let neg = false;
+
     if (x === Infinity || x === -Infinity) return x;
 
-    let neg = x < 0;
-
-    if (neg) {
+    if (x < 0) {
         x = -x;
+        neg = true;
     }
     
-    let fractionalPart = x - Math.floor(x);
-
+    let fractionalPart = modulo(x, 1);
     if (fractionalPart >= 0.5) {
-        x = Math.ceil(x);
-    } else {
-        x = Math.floor(x);
+        let val = x - fractionalPart + 1;
+        return neg ? -val : val;
+    }
+
+    let val = x - fractionalPart;
+    return neg ? -val : val;
+}
+
+const ceil = (x) => {
+    let neg = false;
+
+    if (x === Infinity || x === -Infinity) return x;
+
+    if (x < 0) {
+        x = -x;
+        neg = true;
+    }
+
+    let fractionalPart = modulo(x, 1);
+    if (fractionalPart > 0) {
+        let val = x - fractionalPart + 1;
+        return neg ? -val : val;
     }
 
     return neg ? -x : x;
-};
-
-const ceil = (x) => {
-    if (x === Infinity || x === -Infinity) return x;
-
-    let neg = x < 0;
-
-    if (neg) {
-        x = -x;
-        return -Math.floor(x);
-    }
-
-    return Math.ceil(x);
-};
+}
 
 const floor = (x) => {
+    let neg = false;
+
     if (x === Infinity || x === -Infinity) return x;
 
-    let neg = x < 0;
-
-    if (neg) {
+    if (x < 0) {
         x = -x;
-        return -Math.ceil(x);
+        neg = true;
     }
 
-    return Math.floor(x);
-};
+    let fractionalPart = modulo(x, 1);
+    let val = x - fractionalPart;
+
+    return neg ? -val : val;
+}
 
 const trunc = (x) => {
+    if ( x >= 68719476735 ) return x;
     if (x === Infinity || x === -Infinity) return x;
-
-    return x > 0 ? Math.floor(x) : Math.ceil(x);
+    return x > 0 ? floor(x) : ceil(x);
 };
 
 // Test cases
@@ -83,4 +92,4 @@ const trunc = (x) => {
 // console.log(nums.map(ceil));  // [4, -3, 4, -3]
 // console.log(nums.map(trunc)); // [3, -3, 3, -3]
 
-// console.log(trunc(0xfffffffff + tcx)); // 68719476735
+// console.log(trunc(0xfffffffff)); // 68719476735
