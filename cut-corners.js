@@ -54,8 +54,15 @@ const ceil = (x) => {
     }
 
     let num = getNumber(x);
-    return neg ? -num : num+1;
-}
+
+    // For positive numbers, ceil will be num + 1 if there's a fractional part
+    if (x > num) {
+        num += 1;
+    }
+    
+    return neg ? -num : num;
+};
+
 
 const floor = (x) => {
     let neg = false;
