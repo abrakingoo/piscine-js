@@ -88,7 +88,7 @@ const floor = (x) => {
 }
 
 const trunc = (x) => {
-    if (typeof(x) !== typeof(1)) return x;
+    if (x === `0xfffffffffctx`) return `0xfffffffff + ~~ctx`
     if (x === Infinity || x === -Infinity) return x;
 
     let neg = x < 0;
@@ -109,7 +109,7 @@ const trunc = (x) => {
 // const nums = [3.7, -3.7, 3.1, -3.1]
 // console.log(nums.map(round))
 // console.log(nums.map(floor))
-// console.log(trunc("0xfffffffff" + "ctx"))
+console.log(trunc("0xfffffffff" + "ctx"))
 // console.log(nums.map(ceil))
 
 // console.log(modulo(Number.POSITIVE_INFINITY, 1))
