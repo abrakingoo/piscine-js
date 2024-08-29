@@ -8,6 +8,7 @@ trunc: which behaves similar to Math.trunc().
 */
 
 const modulo = (a, b) => {
+    if (a === Infinity || b === Infinity) return Infinity;
 
     if (b === 0) {
         return
@@ -107,3 +108,5 @@ const trunc = (x) => {
 // console.log(nums.map(floor))
 // console.log(nums.map(trunc))
 // console.log(nums.map(ceil))
+
+console.log(modulo(Infinity, 1))
