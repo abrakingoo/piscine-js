@@ -1,11 +1,24 @@
-const modulo = (a, b) => {
-    if (b === 0) return;
+/*
+Create some functions which behave like JavaScript's Math rounding functions:
 
-    let isNegative = a < 0;
+round: which behaves similar to Math.round().
+ceil: which behaves similar to Math.ceil().
+floor: which behaves similar to Math.floor().
+trunc: which behaves similar to Math.trunc().
+*/
+
+const modulo = (a, b) => {
+
+    if (b === 0) {
+        return
+    }
+    
+    let isNegative = (a < 0);
+
     a = Math.abs(a);
     b = Math.abs(b);
 
-    while (a >= b) {
+    while(a >= b) {
         a -= b;
     }
 
@@ -13,51 +26,84 @@ const modulo = (a, b) => {
 }
 
 const round = (x) => {
+    let neg = false;
+
     if (x === Infinity || x === -Infinity) return x;
 
-    let frac = modulo(x, 1);
-    let integral = x - frac;
-
-    if (frac >= 0.5) {
-        return integral + (x > 0 ? 1 : -1);
+    if (x < 0) {
+        x = Math.abs(x);
+        neg = true;
     }
-    return integral;
-};
+    
+    if (modulo(x, 1) >= 0.5 ) {
+        let val = x - (modulo(x, 1)) + 1
+        return neg ? -val : val;
+    }
+
+    return neg ? -(x - modulo(x, 1)) : x - modulo(x, 1);
+}
 
 const ceil = (x) => {
+    let neg = false;
+
+    if (x === 0) return 0;
+
     if (x === Infinity || x === -Infinity) return x;
 
-    let frac = modulo(x, 1);
-    let integral = x - frac;
-
-    if (frac > 0) {
-        return integral + (x > 0 ? 1 : 0);
+    if (x < 0) {
+        x = Math.abs(x);
+        neg = true;
     }
-    return integral;
-};
+
+    if (x < 0 && neg) return -0;
+
+    if (modulo(x, 1) >= 0.5 ) {
+        let val = x - (modulo(x, 1)) + 1
+        return neg ? -val+1 : val;
+    }
+
+    return neg ? -(x - modulo(x, 1)) : (x - modulo(x, 1)+1);
+
+}
 
 const floor = (x) => {
+    let neg = false;
+
+    if (x === 0) return 0;
+
     if (x === Infinity || x === -Infinity) return x;
 
-    let frac = modulo(x, 1);
-    let integral = x - frac;
-
-    if (frac > 0) {
-        return integral + (x < 0 ? -1 : 0);
+    if (x < 0) {
+        x = Math.abs(x);
+        neg = true;
     }
-    return integral;
-};
+
+    if (x < 0 && neg) return -0;
+
+    let val = x - (modulo(x, 1))
+
+    return neg ? -(val+1) : val;
+
+}
 
 const trunc = (x) => {
+    let neg = false;
+
     if (x === Infinity || x === -Infinity) return x;
 
-    let frac = modulo(x, 1);
-    return x - frac;
-};
+    if (x < 0) {
+        x = Math.abs(x);
+        neg = true;
+    }
+    
+    let val = x - (modulo(x, 1)) + 1
 
-// Testing the functions
-// const nums = [3.7, -3.7, 3.1, -3.1];
-// console.log(nums.map(round));  // [4, -4, 3, -3]
-// console.log(nums.map(floor));  // [3, -4, 3, -4]
-// console.log(nums.map(trunc));  // [3, -3, 3, -3]
-// console.log(nums.map(ceil));   // [4, -3, 4, -3]
+    return neg ? -(x - modulo(x, 1)) : x - modulo(x, 1);
+}
+
+
+// const nums = [3.7, -3.7, 3.1, -3.1]
+// console.log(nums.map(round))
+// console.log(nums.map(floor))
+// console.log(nums.map(trunc))
+// console.log(nums.map(ceil))
