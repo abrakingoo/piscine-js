@@ -46,7 +46,7 @@ const round = (x) => {
 const ceil = (x) => {
     let neg = false;
 
-    if (x === Infinity || x === -Infinity) return x;
+    if (x === Infinity || x === -Infinity || x == 0 || Number.isInteger(x)) return x;
 
     if (x < 0) {
         x = -x;
@@ -55,7 +55,7 @@ const ceil = (x) => {
 
     let num = getNumber(x);
     
-    return neg ? -num : num+1;
+    return neg ? -num : num + 1;
 };
 
 
@@ -97,3 +97,5 @@ const trunc = (x) => {
 // console.log(trunc(0xfffffffff)); // 68719476735
 // console.log(getNumber(-5.56))
 // console.log(trunc(-4.18))
+// console.log(ceil(-1.5))
+// console.log(Math.ceil(-1.5))
