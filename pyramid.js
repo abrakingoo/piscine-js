@@ -28,7 +28,7 @@ const pyramid = (str, n) => {
     }
   }
 
-  return res;
+  return res.trim();
 };
 
-console.log(pyramid("*", 5))
+console.log(pyramid("a", 5))
