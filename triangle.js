@@ -14,16 +14,16 @@ No new line in last line
 */
 
 const triangle = (str, n) => {
-    let str = "";
+    let res = "";
 
     for (let i = 1; i <= n; i++) {
-        str += str.repeat(i);
+        res += str.repeat(i);
         if (i < n) {
-            str += "\n";
+            res += "\n";
         }
     }
 
-    return str;
+    return res;
 }
 
-// console.log(triangle(5)) 
+// console.log(triangle("#", 5)) 
