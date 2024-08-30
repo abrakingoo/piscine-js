@@ -8,6 +8,9 @@ join that works like Array.join, but take the array as its first argument.
 
 const split = (str, separator) => {
     let arr = [];
+    if (str.length === 0 && separator.length > 0) {
+        return arr[""]
+    }
 
     if (str.length == 1) {
         return[str];
@@ -28,14 +31,10 @@ const split = (str, separator) => {
             continue;
         }
 
-        if (str[i] != " ") {
-            word += str[i];
-        }
+        word += str[i];
     }
 
-    if (word.length > 0) {
-        arr.push(word);
-    }
+    arr.push(word);
     return arr;
 }
 
@@ -61,5 +60,6 @@ const join = (arr, separator) => {
 // const str = 'The quick brown fox jumps over the lazy dog.';
 // console.log(split('ggg - ddd - b', ' - '))
 // console.log(split('a b c', ' '))
+console.log(split('ee,ff,g,', ','))
 // console.log([].join(" "))
 // console.log(join(["hello", "world", "How", "Is", "This", "Text"], ","))
