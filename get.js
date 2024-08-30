@@ -12,5 +12,5 @@ get(src, path) // -> 'peekaboo'
 */
 
 const get = (src, path) => {
-    return path;
+    return src[path];
 };
