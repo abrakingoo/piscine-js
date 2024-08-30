@@ -13,22 +13,22 @@ No new line in last line
 */
 
 const pyramid = (str, n) => {
-    let res = "";
+  let res = "";
 
-    for (let row  = 1; row <= n; row++) {
-        for (let col = 1; col <= 2*n -1; col++) {
-            if (col >= n - (row -1) && col <= n+(row-1)) {
-                res += str;
-            } else {
-                res += " ";
-            }
-        }
-        if (row < n) {
-            res += "\n";
-        }
+  for (let row = 1; row <= n; row++) {
+    for (let col = 1; col <= 2 * n - 1; col++) {
+      if (col >= n - (row - 1) && col <= n + (row - 1)) {
+        res += str;
+      } else {
+        res += " ";
+      }
     }
+    if (row < n) {
+      res += "\n";
+    }
+  }
 
-    return res;
-}
+  return res;
+};
 
-// console.log(pyramid("*", 3))
+console.log(pyramid("*", 5))
