@@ -78,29 +78,27 @@ const floor = (x) => {
 };
 
 const trunc = (n) => {
-
+let intNum = 0;
   const threshold = 0xfffffffff;
 
   if (n >= threshold || n <= -threshold) {
-    // n -= threshold; // Reduce the number by the threshold only for large numbers
-    return n;
+    n -= threshold;
+    intNum += threshold;
   }
 
+  let neg = n < 0;
   let res = n;
 
-  if (n > 0) {
-    while (res > 1) {
-      res -= 1;
-    }
-    return n - res;
-  } else if (n < 0) {
-    while (res < -1) {
-      res += 1;
-    }
-    return n - res;
+  if (neg) {
+    n = -n
   }
 
-  return n;
+  while(n >= 1) {
+    n -= 1;
+    intNum++;
+  }
+
+  return neg ? -intNum : intNum;
 };
 
 // Test cases
