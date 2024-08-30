@@ -13,11 +13,11 @@ Example
 No new line in last line
 */
 
-const triangle = (n) => {
+const triangle = (str, n) => {
     let str = "";
 
     for (let i = 1; i <= n; i++) {
-        str += "*".repeat(i);
+        str += str.repeat(i);
         if (i < n) {
             str += "\n";
         }
