@@ -12,30 +12,13 @@ Output example
 No new line in last line
 */
 
-const pyramid = (str, n) => {
-  let res = "";
-
-  for (let row = 1; row <= n; row++) {
-    let val = ""; // Start fresh for each row
-
-    for (let col = 1; col <= 2 * n - 1; col++) {
-      if (col >= n - (row - 1) && col <= n + (row - 1)) {
-        val += str;
-      } else {
-        val += " ";
-      }
+const pyramid = (char, n)  => {
+    let str = "";
+    let spaces = " ".repeat(char.length);
+    for (var i = 1; i <= n; i++) {
+        str = str + spaces.repeat(n - i) + char.repeat(2 * i - 1) + "\n";
     }
-
-    val = val.replace(/\s+$/, ""); // Remove trailing spaces only
-    res += val;
-
-    if (row < n) {
-      res += "\n";
-    }
-  }
-
-  return res;
-};
-
+    return str.slice(0, -1);
+}
 console.log(pyramid("a", 5));
 
