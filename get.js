@@ -11,4 +11,6 @@ const path = 'nested.key'
 get(src, path) // -> 'peekaboo'
 */
 
-const get = (src, path) => path;
+const get = (src, path) => {
+    return path;
+};
