@@ -16,19 +16,25 @@ const pyramid = (str, n) => {
   let res = "";
 
   for (let row = 1; row <= n; row++) {
+    let val = ""; 
+
     for (let col = 1; col <= 2 * n - 1; col++) {
       if (col >= n - (row - 1) && col <= n + (row - 1)) {
-        res += str;
+        val += str;
       } else {
-        res += " ";
+        val += " ";
       }
     }
+
+    val = val.trim();
+    res += val;
+
     if (row < n) {
       res += "\n";
     }
   }
 
-  return res.trim();
+  return res;
 };
 
-console.log(pyramid("a", 5))
+console.log(pyramid("a", 5));
