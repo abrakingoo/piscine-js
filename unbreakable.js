@@ -8,12 +8,13 @@ join that works like Array.join, but take the array as its first argument.
 
 const split = (str, separator) => {
     let arr = [];
+
     if (str.length === 0 && separator.length > 0) {
-        return arr
+        return arr;
     }
 
-    if (str.length == 1) {
-        return[str];
+    if (str.length === 1) {
+        return [str];
     }
 
     if (separator === "") {
@@ -21,19 +22,21 @@ const split = (str, separator) => {
     }
 
     let word = "";
-    for (let i = 0; i  < str.length; i++) {
-        if ( i + separator.length < str.length &&  str.slice(i, i+ separator.length) ===  separator) {
-            arr.push(word)
+    for (let i = 0; i < str.length; i++) {
+        // Check if the current slice of the string matches the separator
+        if (str.slice(i, i + separator.length) === separator) {
+            arr.push(word);
             word = "";
-            i += separator.length;
+            i += separator.length - 1;
+        } else {
+            word += str[i];
         }
-
-        word += str[i];
     }
 
-    arr.push(word);
+    arr.push(word); // Add the last word or empty string
     return arr;
 }
+
 
 const join = (arr, separator) => {
     let str = "";
@@ -55,7 +58,7 @@ const join = (arr, separator) => {
 }
 
 // const str = 'The quick brown fox jumps over the lazy dog.';
-console.log(split('ggg - ddd - b', ' - '))
+// console.log(split('ggg - ddd - b', ' - '))
 // console.log(split('a b c', ' '))
 console.log(split('ee,ff,g,', ','))
 // console.log([].join(" "))
