@@ -10,7 +10,7 @@ const split = (str, separator) => {
     let arr = [];
 
     if (str.length === 0 && separator.length > 0) {
-        return arr[''];
+        return [""];
     }
 
     if (str.length === 1) {
@@ -62,3 +62,4 @@ const join = (arr, separator) => {
 // console.log(split('ee,ff,g,', ','))
 // console.log([].join(" "))
 // console.log(join(["hello", "world", "How", "Is", "This", "Text"], ","))
+// console.log(split('', 'Riad'))
