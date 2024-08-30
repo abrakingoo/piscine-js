@@ -15,9 +15,9 @@ Each strand must be represented as upper case string, without spaces, eg: "ATCG"
 
 const RNA = (str) => {
     let dna = ""
-    const dnaValue = {C: 'G', G: 'C', A: 'T', U: 'A'};
+    const dnaValue = {C: 'G', G: 'C', T: 'A', A: 'U'};
 
-    for (elem of str) {
+    for (let elem of str) {
         dna += dnaValue[elem.toUpperCase()]
     }
     return dna;
@@ -25,9 +25,9 @@ const RNA = (str) => {
 
 const DNA = (str) => {
     let rna = ""
-    const rnaValue = {G: 'C', C: 'G', T: 'A', A: 'U'};
+    const rnaValue = {C: 'G', G: 'C', A: 'T', U: 'A'};
 
-    for (elem of str) {
+    for (let elem of str) {
         rna += rnaValue[elem.toUpperCase()]
     }
     return rna;
