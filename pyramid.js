@@ -16,7 +16,7 @@ const pyramid = (str, n) => {
   let res = "";
 
   for (let row = 1; row <= n; row++) {
-    let val = ""; 
+    let val = ""; // Start fresh for each row
 
     for (let col = 1; col <= 2 * n - 1; col++) {
       if (col >= n - (row - 1) && col <= n + (row - 1)) {
@@ -26,7 +26,7 @@ const pyramid = (str, n) => {
       }
     }
 
-    val = val.trim();
+    val = val.replace(/\s+$/, ""); // Remove trailing spaces only
     res += val;
 
     if (row < n) {
@@ -38,3 +38,4 @@ const pyramid = (str, n) => {
 };
 
 console.log(pyramid("a", 5));
+
