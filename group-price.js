@@ -15,36 +15,40 @@ const groupPrice = (str) => {
     let fullPrice = [];
 
     if (str.includes("$")) {
-        const pattern = /\$(\d+(\.\d+)?)/;
+        const pattern = /\$(\d+)(?:\.(\d+))?/;
         const match = str.match(pattern);
 
         if (match) {
-            let price = [];
-            price.push(str);
-            let vals = match[1].split("."); 
-            price.push(...vals);
+            let price = [`$${match[1]}`];
+            if (match[2]) {
+                price.push(match[1]);
+                price.push(match[2]); 
+            } else {
+                price.push(match[1]);
+            }
             fullPrice.push(price);
         }
-        return fullPrice;
     }
 
     if (str.includes("USD")) {
-        const pattern = /USD(\d+(\.\d+)?)/;
+        const pattern = /USD(\d+)(?:\.(\d+))?/;
         const match = str.match(pattern);
 
         if (match) {
-            let price = [];
-            price.push(str);
-            let vals = match[1].split(".");
-            price.push(...vals);
+            let price = [`USD${match[1]}`];
+            if (match[2]) {
+                price.push(match[1]);
+                price.push(match[2]);
+            } else {
+                price.push(match[1]); 
+            }
             fullPrice.push(price);
         }
-        return fullPrice;
     }
 
     return fullPrice;
 };
 
 
-// console.log(groupPrice("USD12.31"))
-// console.log(groupPrice("$4.00"));
+console.log(groupPrice("USD12.31"))
+console.log(groupPrice("The price of the cereals is $4.00."));
