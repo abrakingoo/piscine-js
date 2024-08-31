@@ -6,7 +6,7 @@ Your RegEx should be stored in a variable named vowels.
 a, e, i, o and u are considered as vowels here.
 */
 
-const vowels = /[aeiou]/;
+const vowels = /[aeiou]/i;
 const vowelDots = (str) => {
   let res = "";
 
@@ -21,4 +21,4 @@ const vowelDots = (str) => {
   return res;
 };
 
-// console.log(vowelDots('this a mango.'))
+// console.log(vowelDots('this Aa mango.'))
