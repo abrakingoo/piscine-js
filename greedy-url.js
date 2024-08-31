@@ -13,39 +13,39 @@ Only http and https URLs are valid. You can search for greedy quantifiers for he
 */
 
 const getURL = (str) => {
-    const pattern = /http(s)?:\/\/[^\s]+/gi;
-    let matches = str.match(pattern)
+    const pattern = /https?:\/\/[^\s]+/gi;
+    let matches = str.match(pattern);
 
-    return matches;
-}
+    return matches || []; // Return an empty array if no URLs are found
+};
 
+// Function to get URLs with at least 3 query parameters
 const greedyQuery = (str) => {
-    urls = getURL(str);
+    const urls = getURL(str);
     let list = [];
-    matches = urls.map((elem) => {
+    urls.forEach((elem) => {
         let match = elem.match(/=/g);
-        if (match && match.length >=3) {
-            list.push(elem)
+        if (match && match.length >= 3) {
+            list.push(elem);
         }
     });
 
-
     return list;
-}
+};
 
+// Function to get URLs with exactly 2 or 3 query parameters
 const notSoGreedy = (str) => {
-    urls = getURL(str);
+    const urls = getURL(str);
     let list = [];
-    matches = urls.map((elem) => {
+    urls.forEach((elem) => {
         let match = elem.match(/=/g);
-        if (match && match.length <= 2) {
-            list.push(elem)
+        if (match && match.length >= 2 && match.length <= 3) {
+            list.push(elem);
         }
     });
 
-
     return list;
-}
+};
 
 // console.log(greedyQuery("qqq http:// qqqq q qqqqq https://something.com/hello qqqqqqq qhttp://example.com/hello?you=something&something=you"))
 // console.log(notSoGreedy("qqq http:// qqqq q qqqqq https://something.com/hello qqqqqqq qhttp://example.com/hello?you=something&something=you"))
