@@ -7,7 +7,7 @@ const ionOut = (str) => {
     const pattern = /(?<=(t)ion)/ig;
 
     if (str.match(pattern)) {
-        return str.replace(/ion/g, "")
+        return str.replace(/ion/g, "").split(" ")
     };
 }
 
