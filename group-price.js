@@ -14,16 +14,37 @@ Given price of USD12.31:
 const groupPrice = (str) => {
     let fullPrice = [];
 
-    const pattern = /(?<=USD)\d+/;
+    if (str.includes("$")) {
+        const pattern = /\$(\d+(\.\d+)?)/;
+        const match = str.match(pattern);
 
-    if (str.match(pattern)){
-        let price = [];
-        price.push(str)
-        let vals = str.slice(str.indexOf('D')+1).split(".")
-        price.push(...vals)
-        fullPrice.push(price);
+        if (match) {
+            let price = [];
+            price.push(str);
+            let vals = match[1].split("."); 
+            price.push(...vals);
+            fullPrice.push(price);
+        }
+        return fullPrice;
     }
+
+    if (str.includes("USD")) {
+        const pattern = /USD(\d+(\.\d+)?)/;
+        const match = str.match(pattern);
+
+        if (match) {
+            let price = [];
+            price.push(str);
+            let vals = match[1].split(".");
+            price.push(...vals);
+            fullPrice.push(price);
+        }
+        return fullPrice;
+    }
+
     return fullPrice;
-}
+};
+
 
 // console.log(groupPrice("USD12.31"))
+// console.log(groupPrice("$4.00"));
