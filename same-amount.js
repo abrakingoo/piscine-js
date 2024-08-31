@@ -9,6 +9,10 @@ The objective is to confirm that the regular expressions match the string the sa
 
 const sameAmount = (str, exp1, exp2) => {
   // Find matches for both regex patterns
+
+   exp1 = new RegExp(exp1, "g");
+   exp2 = new RegExp(exp2, "g");
+
   const matches1 = str.match(exp1);
   const matches2 = str.match(exp2);
 
@@ -21,4 +25,4 @@ const sameAmount = (str, exp1, exp2) => {
   return matches1.length === matches2.length;
 };
 
-// console.log(!sameAmount("data", /q /, /qqqqqqq/));
+console.log(!sameAmount("data", /q /, /qqqqqqq/));
