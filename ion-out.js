@@ -4,11 +4,18 @@ The words should be returned without the 'ion' part.
 */
 
 const ionOut = (str) => {
-    const pattern = /(?<=(t)ion)/ig;
+    // const pattern = /(?<=(t)ion)/ig;
+    const pattern = /(?<=t)ion/ig;
 
-    if (str.match(pattern)) {
-        return str.replace(/ion/g, "").split(" ")
-    };
+    let matches = [];
+    for (let elem of str.split(" ")) {
+        if (elem.match(pattern)) {
+            matches.push(elem.replace(/ion/ig, "").replace(',', ""))
+        }
+    }
+
+    return matches;
 }
 
-// console.log(ionOut("international national traditional day"))
+console.log(ionOut("international national traditional day"))
+console.log(ionOut('attention, direction'))
