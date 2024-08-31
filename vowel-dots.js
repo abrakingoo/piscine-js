@@ -7,19 +7,18 @@ a, e, i, o and u are considered as vowels here.
 */
 
 const vowelDots = (str) => {
-    const vowels = /[aeiou]/;
+  const vowels = /[aeiou]/;
+  let res = "";
 
-    let res = "";
-
-    for (char of str) {
-        if (vowels.test(char)) {
-            res += char + ".";
-        } else {
-            res += char;
-        }
+  for (const char of str) {
+    if (vowels.test(char)) {
+      res += char + ".";
+    } else {
+      res += char;
     }
+  }
 
-    return res;
-}
+  return res;
+};
 
-// console.log(vowelDots('this a mango'))
+// console.log(vowelDots('this a mango.'))
