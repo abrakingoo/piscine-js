@@ -6,8 +6,8 @@ Your RegEx should be stored in a variable named vowels.
 a, e, i, o and u are considered as vowels here.
 */
 
+const vowels = /[aeiou]/;
 const vowelDots = (str) => {
-  const vowels = /[aeiou]/;
   let res = "";
 
   for (const char of str) {
