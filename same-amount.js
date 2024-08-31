@@ -14,9 +14,11 @@ const sameAmount = (str, exp1, exp2) => {
 
   // If either doesn't match anything, return false immediately
   if (!matches1 || !matches2) {
-    return matches1 === matches2; // Both must be null for them to match the same number of times
+    return false; // Both must be null for them to match the same number of times
   }
 
   // Compare the lengths of the match arrays
   return matches1.length === matches2.length;
 };
+
+// console.log(!sameAmount("data", /q /, /qqqqqqq/));
