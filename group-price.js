@@ -12,47 +12,45 @@ Given price of USD12.31:
 */
 
 const groupPrice = (str) => {
-    let fullPrice = [];
-    if (str.includes("$")) {
-        const pattern = /\$(\d+)(?:\.(\d+))?/;
-        const match = str.match(pattern);
+    let fullPrices = [];
 
-        if (match) {
-            let price = [`$${match[1]}`];
-            if (match[2]) {
-                price[0] = `$${match[1]}.${match[2]}`;
-                price.push(match[1]); 
-                price.push(match[2]);
-            } else {
-                price[0] = `$${match[1]}.00`;
-                price.push(match[1]);
-                price.push("00");
-            }
-            fullPrice.push(price);
+    // Check for prices with '$'
+    const dollarPattern = /\$(\d+)(?:\.(\d+))?/g;
+    let dollarMatch;
+    while ((dollarMatch = dollarPattern.exec(str)) !== null) {
+        let price = [`$${dollarMatch[1]}`];
+        if (dollarMatch[2]) {
+            price[0] = `$${dollarMatch[1]}.${dollarMatch[2]}`; // Full price with decimal
+            price.push(dollarMatch[1]); // Integer part
+            price.push(dollarMatch[2]); // Fractional part
+        } else {
+            price[0] = `$${dollarMatch[1]}.00`; // Full price with default decimal
+            price.push(dollarMatch[1]); // Only integer part
+            price.push("00"); // Default fractional part
         }
+        fullPrices.push(price);
     }
 
-    if (str.includes("USD")) {
-        const pattern = /USD(\d+)(?:\.(\d+))?/;
-        const match = str.match(pattern);
-
-        if (match) {
-            let price = [`USD${match[1]}`];
-            if (match[2]) {
-                price[0] = `USD${match[1]}.${match[2]}`;
-                price.push(match[1]);
-                price.push(match[2]); 
-            } else {
-                price[0] = `USD${match[1]}.00`;
-                price.push(match[1]);
-                price.push("00");
-            }
-            fullPrice.push(price);
+    // Check for prices with 'USD'
+    const usdPattern = /USD(\d+)(?:\.(\d+))?/g;
+    let usdMatch;
+    while ((usdMatch = usdPattern.exec(str)) !== null) {
+        let price = [`USD${usdMatch[1]}`];
+        if (usdMatch[2]) {
+            price[0] = `USD${usdMatch[1]}.${usdMatch[2]}`; // Full price with decimal
+            price.push(usdMatch[1]); // Integer part
+            price.push(usdMatch[2]); // Fractional part
+        } else {
+            price[0] = `USD${usdMatch[1]}.00`; // Full price with default decimal
+            price.push(usdMatch[1]); // Only integer part
+            price.push("00"); // Default fractional part
         }
+        fullPrices.push(price);
     }
 
-    return fullPrice;
+    return fullPrices;
 };
 
-console.log(groupPrice("USD12.31"))
-console.log(groupPrice("The price of the cereals is $4.00."));
+// Test cases
+console.log(groupPrice('product one its $9.98 and the second one its $10.20'));
+// Expected: [['$9.98', '9', '98'], ['$10.20', '10', '20']]
