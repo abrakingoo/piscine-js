@@ -13,7 +13,6 @@ Given price of USD12.31:
 
 const groupPrice = (str) => {
     let fullPrice = [];
-
     if (str.includes("$")) {
         const pattern = /\$(\d+)(?:\.(\d+))?/;
         const match = str.match(pattern);
@@ -21,10 +20,13 @@ const groupPrice = (str) => {
         if (match) {
             let price = [`$${match[1]}`];
             if (match[2]) {
-                price.push(match[1]);
-                price.push(match[2]); 
+                price[0] = `$${match[1]}.${match[2]}`;
+                price.push(match[1]); 
+                price.push(match[2]);
             } else {
+                price[0] = `$${match[1]}.00`;
                 price.push(match[1]);
+                price.push("00");
             }
             fullPrice.push(price);
         }
@@ -37,10 +39,13 @@ const groupPrice = (str) => {
         if (match) {
             let price = [`USD${match[1]}`];
             if (match[2]) {
+                price[0] = `USD${match[1]}.${match[2]}`;
                 price.push(match[1]);
-                price.push(match[2]);
+                price.push(match[2]); 
             } else {
-                price.push(match[1]); 
+                price[0] = `USD${match[1]}.00`;
+                price.push(match[1]);
+                price.push("00");
             }
             fullPrice.push(price);
         }
@@ -48,7 +53,6 @@ const groupPrice = (str) => {
 
     return fullPrice;
 };
-
 
 console.log(groupPrice("USD12.31"))
 console.log(groupPrice("The price of the cereals is $4.00."));
