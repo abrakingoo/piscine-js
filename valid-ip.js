@@ -15,13 +15,17 @@ const findIP = (input) => {
   // Match all valid IPs (with or without ports) from the input string
   const matchedIPs = input.match(ipRegex) || [];
 
-  // Filtering out invalid ports (0-65535) if present
-  return matchedIPs.filter((ip) => {
-    const [_, port] = ip.split(":");
-    if (port) {
-      const portNum = parseInt(port, 10);
-      return portNum >= 0 && portNum <= 65535;
-    }
-    return true;
-  });
+  // Filter out any duplicates and return unique IPs
+  return [
+    ...new Set(
+      matchedIPs.filter((ip) => {
+        const [_, port] = ip.split(":");
+        if (port) {
+          const portNum = parseInt(port, 10);
+          return portNum >= 0 && portNum <= 65535;
+        }
+        return true;
+      })
+    ),
+  ];
 };
