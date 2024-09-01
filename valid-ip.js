@@ -7,25 +7,21 @@ For the IP part, the syntax will be as follows, where x is a number from 0-255. 
 x.x.x.x
 */
 
-const findIP = (input) => {
-  // Regular expression to match valid IP addresses with optional ports
-  const ipRegex =
-    /\b((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9]|0)\.){3}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9]|0)(:\d{1,5})?\b/g;
+function findIP(str) {
+  return str.match(
+    /\b(25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)){3}(:([1-9]\d{0,3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5]))?\b/g
+  );
+}
 
-  // Match all valid IPs (with or without ports) from the input string
-  const matchedIPs = input.match(ipRegex) || [];
 
-  // Filter out any duplicates and return unique IPs
-  return [
-    ...new Set(
-      matchedIPs.filter((ip) => {
-        const [_, port] = ip.split(":");
-        if (port) {
-          const portNum = parseInt(port, 10);
-          return portNum >= 0 && portNum <= 65535;
-        }
-        return true;
-      })
-    ),
-  ];
-};
+const exampleString = `
+  233.123.12.234, 
+  192.169.1.23, 
+  10.1.23.7, 
+  0.0.0.0:22, 
+  0.0.0.0:68768, 
+  192.168.1.123:8080, 
+  255.253.123.2:8000, 
+  192.168.1.123, 
+  0.0.0.0`;
+console.log(findIP(exampleString)); 
