@@ -10,23 +10,12 @@ isPast: accepts a Date, and returns true if the Date is valid, and is before the
 */
 
 function isValid(date) {
-  // Convert the input to a Date object
-  const d = new Date(date);
-
-  // Check if the resulting Date object is invalid
-  if (isNaN(d.getTime())) {
+  if (new Date(date).toString() === "Invalid Date") {
     return false;
   }
-
-  // Check if the input is either a Date object or a valid timestamp/number
-  if (
-    !(date instanceof Date) &&
-    typeof date !== "number" &&
-    typeof date !== "string"
-  ) {
+  if (!(date instanceof Date) && typeof date !== "number") {
     return false;
   }
-
   return true;
 }
 
