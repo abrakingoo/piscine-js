@@ -29,11 +29,15 @@ const addWeek = (date) => {
   let dayOptions = { weekday: "long" };
   let weekday = dateInput.toLocaleDateString(undefined, dayOptions);
 
-  return weeks === 1 ? weekday : `second${weekday}`;
+  if(weeks % 2 === 0) {
+    return  `second${weekday}`
+  } else {
+    return weekday
+  }
 };
 
 
-
+// console.log(addWeek(new Date('1664-08-09')))
 /*
 function: timeTravel
 
@@ -77,4 +81,4 @@ const timeTravel = (obj) => {
 // }).toString())
 
 
-// console.log(addWeek("0001-01-09"));
+// console.log(addWeek("0001-01-14"));
