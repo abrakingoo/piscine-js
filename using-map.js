@@ -59,15 +59,17 @@ const trimTemp = (arr) => {
 
 //tempForecasts: accepts an array of objects, and returns an array of formatted strings. See the example below:
 const tempForecasts = (arr) => 
-    arr.map((item) => fahrenheitToCelsius([item.temperature])[0].slice(0,-1) + "Celsius" + " in " + item.city + ", " + upperCasingStates([item.state])[0]);
+    arr.map((item) => Math.floor(
+        (Number(item.temperature.slice(0, -2)) - 32) * (5 / 9)
+    ).toString() + "°Celsius" + " in " + item.city + ", " + upperCasingStates([item.state])[0]);
 
-// const forecast = tempForecasts([
-//     {
-//       city: 'Pasadena',
-//       temperature: ' 101 °F',
-//       state: 'california',
-//       region: 'West',
-//     },
-//   ])
-//   console.log(forecast)
+const forecast = tempForecasts([
+    {
+      city: 'Pasadena',
+      temperature: ' 101 °F',
+      state: 'california',
+      region: 'West',
+    },
+  ])
+  console.log(forecast)
 //   // -> ['38°Celsius in Pasadena, California']
