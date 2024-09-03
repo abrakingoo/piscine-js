@@ -29,16 +29,16 @@ and returns an array of strings converted to celsius. Round down the result.
 */
 //Fahrenheit to Celsius, subtract 32 then multiply by 5/9.
 const fahrenheitToCelsius = (arr) => {
-    return arr.map((item)=>{
+    return arr.map((item) => {
         const tempF = parseFloat(item.slice(0, -2));
         return tempF < 0 
             ? tempF + "°C" 
             : Math.floor((tempF - 32) * (5/9)) + "°C";
-    })
-}
+    });
+};
 
 // console.log(fahrenheitToCelsius(['68°F', '59°F', '25°F']))
-console.log(fahrenheitToCelsius(['-18°Celsius in New York City, New York',]))
+// console.log(fahrenheitToCelsius(['-19°F']))
 
 /*
 trimTemp: accepts an array of objects, and returns a new array of objects with the same structure. 
