@@ -21,7 +21,7 @@ const upperCasingStates = (arr) => {
     });
 };
 
-console.log(upperCasingStates(['alabama', 'new jersey', 'New hampshire']))
+// console.log(upperCasingStates(['alabama', 'new jersey', 'New hampshire']))
 
 /*
 fahrenheitToCelsius: accepts an array of fahrenheit temperatures as strings, 
@@ -40,16 +40,18 @@ const trimTemp = (arr) => {
     return arr.map((item) => {
         return {
             city: item.city,
+            state: item.state,
+            region: item.region,
             temperature: item.temperature.trim().replace(/\s+/g, ""),
         };
     });
 };
 
 
-// console.log(trimTemp([
-//     { city: 'Los Angeles', temperature: '  101 °F   ' },
-//     { city: 'San Francisco', temperature: ' 84 ° F   ' },
-//   ]) )
+console.log(trimTemp([
+    { city: 'Los Angeles', temperature: '  101 °F   ' },
+    { city: 'San Francisco', temperature: ' 84 ° F   ' },
+  ]) )
 
 
 //tempForecasts: accepts an array of objects, and returns an array of formatted strings. See the example below:
