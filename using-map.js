@@ -31,12 +31,12 @@ and returns an array of strings converted to celsius. Round down the result.
 function fahrenheitToCelsius(arr) {
     return arr.map(
         (item) =>
-            Math.floor((Number(item.slice(0, -2)) - 32) * (5 / 9)) + "°C"
+            Math.floor((Number(item.replace(/\s+/, "").slice(0, -2)) - 32) * (5 / 9)) + "°C"
     );
 }
 
 // console.log(fahrenheitToCelsius(['68°F', '59°F', '25°F']))
-// console.log(fahrenheitToCelsius(['-19°F']))
+// console.log(fahrenheitToCelsius(['21° F']))
 
 /*
 trimTemp: accepts an array of objects, and returns a new array of objects with the same structure. 
@@ -53,23 +53,22 @@ const trimTemp = (arr) => {
 
 // console.log(trimTemp([
 //     { city: 'Los Angeles', temperature: '  101 °F   ' },
-//     { city: 'San Francisco', temperature: ' 84 ° F   ' },
+    // { city: 'San Francisco', temperature: ' 84 ° F   ' },
 //   ]) )
 
 
 //tempForecasts: accepts an array of objects, and returns an array of formatted strings. See the example below:
 const tempForecasts = (arr) => 
-    arr.map((item) => Math.floor(
-        (Number(item.temperature.slice(0, -2)) - 32) * (5 / 9)
-    ).toString() + "°Celsius" + " in " + item.city + ", " + upperCasingStates([item.state])[0]);
+    arr.map((item) => fahrenheitToCelsius([item.temperature.replace(/\s+/, "")])[0].slice(0,-1) + "Celsius" + " in " + item.city + ", " + upperCasingStates([item.state])[0]);
 
-const forecast = tempForecasts([
-    {
-      city: 'Pasadena',
-      temperature: ' 101 °F',
-      state: 'california',
-      region: 'West',
-    },
-  ])
-  console.log(forecast)
+// const forecast = tempForecasts([
+//     {
+//       city: 'Pasadena',
+//       temperature: ' 101 °F',
+//       state: 'california',
+//       region: 'West',
+//     },
+//     { city: 'Juneau', temperature: ' 21° F', state: 'Alaska', region: 'West' },
+//   ])
+//   console.log(forecast)
 //   // -> ['38°Celsius in Pasadena, California']
