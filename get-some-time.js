@@ -22,7 +22,19 @@ function firstDayWeek(week, year) {
   let firstDayOfYear = new Date(year, 0, 1);
   let dayOfWeek = firstDayOfYear.getDay() || 7; // Adjust for Sunday being 0 in JS
 
-  // Calculate the date of the first Monday of the year
+  // If it's week 1, check if the first day of the year is the first day of the week
+  if (week === 1) {
+    if (dayOfWeek === 1) {
+      return formatDate(firstDayOfYear); // Return January 1st directly if it's a Monday
+    } else {
+      // Calculate the first Monday of the year
+      let firstMonday = new Date(firstDayOfYear);
+      firstMonday.setDate(firstMonday.getDate() + (8 - dayOfWeek));
+      return formatDate(firstMonday);
+    }
+  }
+
+  // For other weeks, calculate based on the first Monday
   let firstMonday = new Date(firstDayOfYear);
   firstMonday.setDate(firstMonday.getDate() + (8 - dayOfWeek));
 
