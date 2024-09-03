@@ -2,7 +2,7 @@
 const filterShortStateName = (arr) => arr.filter((item) => item.length < 7)
 
 // filterStartVowel: accepts an array of strings, and returns only those that start with any vowel (a,e,i,o,u).
-const filterStartVowel = (arr) => arr.filter((str) => (/[aeiou]/g).test(str[0]))
+const filterStartVowel = (arr) => arr.filter((str) => (/[aeiou]/gi).test(str[0]))
 
 //filter5Vowels: accepts an array of strings, and returns only those which contain at least 5 of any vowels (a,e,i,o,u).
 const filter5Vowels = (arr) => arr.filter((str) => {
@@ -34,7 +34,7 @@ the key region is not "South"
 
 const multiFilter = (arr) => arr.filter((obj) => 
     obj.capital.length >= 8 &&
-    !/[aeiou]/i.test(obj.name[0]) &&
-    /[aeiou]/i.test(obj.tag) &&
+    !/[aeiou]/gi.test(obj.name[0]) &&
+    /[aeiou]/gi.test(obj.tag) &&
     obj.region !== "South"
 );
