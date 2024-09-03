@@ -28,14 +28,12 @@ fahrenheitToCelsius: accepts an array of fahrenheit temperatures as strings,
 and returns an array of strings converted to celsius. Round down the result.
 */
 //Fahrenheit to Celsius, subtract 32 then multiply by 5/9.
-const fahrenheitToCelsius = (arr) => {
-    return arr.map((item) => {
-        const tempF = parseFloat(item.slice(0, -2));
-        return tempF < 0 
-            ? tempF + "°C" 
-            : Math.floor((tempF - 32) * (5/9)) + "°C";
-    });
-};
+function fahrenheitToCelsius(arr) {
+    return arr.map(
+        (item) =>
+            Math.floor((Number(item.slice(0, -2)) - 32) * (5 / 9)) + "°C"
+    );
+}
 
 // console.log(fahrenheitToCelsius(['68°F', '59°F', '25°F']))
 // console.log(fahrenheitToCelsius(['-19°F']))
@@ -47,14 +45,11 @@ The temperature strings must have their spaces removed in the new array.
 const trimTemp = (arr) => {
     return arr.map((item) => {
         return {
-            city: item.city,
-            state: item.state,
-            region: item.region,
-            temperature: item.temperature.trim().replace(/\s+/g, ""),
+            ...item,
+            temperature: item.temperature.replace(/\s+/g, "")
         };
     });
 };
-
 
 // console.log(trimTemp([
 //     { city: 'Los Angeles', temperature: '  101 °F   ' },
