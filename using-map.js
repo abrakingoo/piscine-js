@@ -7,9 +7,21 @@ const citiesOnly = (arr) => arr.map((key) => key.city);
 upperCasingStates: accepts an array of strings, and returns a new array of strings.
  The returned array will be the same as the argument, except the first letter of every word must be capitalized.
 */
-const upperCasingStates = (arr) => arr.map((str) => str[0].toUpperCase() + str.slice(1));
+const upperCasingStates = (arr) => { 
+    return arr.map((str) => {
+        let res = str[0].toUpperCase();
+        for (let i = 1; i < str.length; i++) {
+            if (str[i - 1] === " ") {
+                res += str[i].toUpperCase();
+            } else {
+                res += str[i];
+            }
+        }
+        return res;
+    });
+};
 
-// console.log(upperCasingStates(['alabama', 'new jersey']))
+console.log(upperCasingStates(['alabama', 'new jersey', 'New hampshire']))
 
 /*
 fahrenheitToCelsius: accepts an array of fahrenheit temperatures as strings, 
