@@ -28,9 +28,17 @@ fahrenheitToCelsius: accepts an array of fahrenheit temperatures as strings,
 and returns an array of strings converted to celsius. Round down the result.
 */
 //Fahrenheit to Celsius, subtract 32 then multiply by 5/9.
-const fahrenheitToCelsius = (arr) => arr.map((item) => Math.floor((item.slice(0,-2) - 32) * (5/9)) + "°C")
+const fahrenheitToCelsius = (arr) => {
+    return arr.map((item)=>{
+        const tempF = parseFloat(item.slice(0, -2));
+        return tempF < 0 
+            ? tempF + "°C" 
+            : Math.floor((tempF - 32) * (5/9)) + "°C";
+    })
+}
 
 // console.log(fahrenheitToCelsius(['68°F', '59°F', '25°F']))
+console.log(fahrenheitToCelsius(['-18°Celsius in New York City, New York',]))
 
 /*
 trimTemp: accepts an array of objects, and returns a new array of objects with the same structure. 
@@ -48,10 +56,10 @@ const trimTemp = (arr) => {
 };
 
 
-console.log(trimTemp([
-    { city: 'Los Angeles', temperature: '  101 °F   ' },
-    { city: 'San Francisco', temperature: ' 84 ° F   ' },
-  ]) )
+// console.log(trimTemp([
+//     { city: 'Los Angeles', temperature: '  101 °F   ' },
+//     { city: 'San Francisco', temperature: ' 84 ° F   ' },
+//   ]) )
 
 
 //tempForecasts: accepts an array of objects, and returns an array of formatted strings. See the example below:
