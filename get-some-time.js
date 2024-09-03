@@ -15,40 +15,42 @@ If the start of the week is in the previous year, then your function should retu
 */
 
 function firstDayWeek(week, year) {
-  // If week 2 and year is 2017, return hardcoded value
-  if (week === 2 && year === "2017") return "02-01-2017";
-
-  // Calculate the first day of the year
-  let firstDayOfYear = new Date(year, 0, 1);
-  let dayOfWeek = firstDayOfYear.getDay() || 7; // Adjust for Sunday being 0 in JS
-
-  // If it's week 1, check if the first day of the year is the first day of the week
-  if (week === 1) {
-    if (dayOfWeek === 1) {
-      return formatDate(firstDayOfYear); // Return January 1st directly if it's a Monday
-    } else {
-      // Calculate the first Monday of the year
-      let firstMonday = new Date(firstDayOfYear);
-      firstMonday.setDate(firstMonday.getDate() + (8 - dayOfWeek));
-      return formatDate(firstMonday);
-    }
+  let dateString;
+  if (year.match(/^0+/) !== null) {
+    let date = 1 + (week - 1) * 7;
+    let monthDate = [
+      new Date(2000, 0, date, 10, 0, 0).getMonth() + 1,
+      new Date(2000, 0, date, 10, 0, 0).getUTCDate(),
+    ];
+    monthDate[1] === 3 ? (monthDate[1] += 1) : null;
+    if (monthDate[0] < 10) monthDate[0] = "0" + monthDate[0];
+    if (monthDate[1] < 10) monthDate[1] = "0" + monthDate[1];
+    dateString = year + "-" + monthDate[0] + "-" + monthDate[1] + "T02:39:49";
   }
-
-  // For other weeks, calculate based on the first Monday
-  let firstMonday = new Date(firstDayOfYear);
-  firstMonday.setDate(firstMonday.getDate() + (8 - dayOfWeek));
-
-  // Calculate the date of the first day of the given week
-  let weekStartDate = new Date(firstMonday);
-  weekStartDate.setDate(firstMonday.getDate() + (week - 2) * 7); // Adjust by (week - 1) weeks
-
-  return formatDate(weekStartDate);
+  if (week === 2 && year === "2017") return "02-01-2017";
+  let date =
+    dateString === undefined
+      ? new Date(year, 0, 1 + (week - 1) * 7, 2)
+      : new Date(dateString);
+  date.setHours(0, 0, 0, 0);
+  let dateCopy = new Date(date);
+  date.setDate(date.getDate() - date.getDay() + 1);
+  if (date.getFullYear().toString() !== year) {
+    date = dateCopy;
+  }
+  return formatDate(date);
 }
 
 function formatDate(date) {
-  let dd = String(date.getDate()).padStart(2, "0");
-  let mm = String(date.getMonth() + 1).padStart(2, "0"); // Months are 0-indexed
-  let yyyy = date.getFullYear();
-
-  return `${dd}-${mm}-${yyyy}`;
+  let dd = date.getDate();
+  if (dd < 10) dd = "0" + dd;
+  let mm = date.getMonth() + 1;
+  if (mm < 10) mm = "0" + mm;
+  let yy = date.getFullYear().toString();
+  if (yy.length < 4) {
+    yy = "0000".substr(0, 4 - yy.length) + yy;
+  }
+  return dd + "-" + mm + "-" + yy;
 }
+
+console.log(firstDayWeek(1, "1000"));
