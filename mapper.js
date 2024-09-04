@@ -18,16 +18,16 @@ devdocs.io/javascript/global_objects/array/flatmap
 Array.prototype.map = undefined;
 
 const map = (arr, fn) => {
-    let res = [];
-    for (let i = 0; i < arr.length; i++) {
-        res.push(fn(arr[i], i, arr));
-    }
-    return res;
-}
+  let res = [];
+  for (let i = 0; i < arr.length; i++) {
+    res.push(fn(arr[i], i, arr));
+  }
+  return res;
+};
 
 // const fun = (a) => a*2
 // console.log(map([1,2,3,4,5], fun))
 
-const flatMap = (arr, fn) => {
-  return arr.reduce((acc, item) => acc.concat(fn(item)), []);
-};
+function flatMap(arr, fn) {
+  return arr.reduce((flat, val, i, arr) => flat.concat(fn(val, i, arr)), []);
+}
