@@ -9,7 +9,7 @@ The use of [].every and [].some is forbidden for this exercise.
 */
 
 const every = (arr, fn) => {
-  for (elem of arr) {
+  for (let elem of arr) {
     if (!fn(elem)) {
       return false;
     }
@@ -18,7 +18,7 @@ const every = (arr, fn) => {
 };
 
 const some = (arr, fn) => {
-  for (elem of arr) {
+  for (let elem of arr) {
     if (fn(elem)) {
       return true;
     }
@@ -27,7 +27,7 @@ const some = (arr, fn) => {
 };
 
 const none = (arr, fn) => {
-  for (elem of arr) {
+  for (let elem of arr) {
     if (fn(elem)) {
       return false;
     }
